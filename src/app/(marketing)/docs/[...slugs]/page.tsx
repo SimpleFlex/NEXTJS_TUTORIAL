@@ -1,7 +1,7 @@
-export default async function ({
+export default async function theSlung({
   params,
 }: {
-  params: Promise<{ slugs: String[] }>;
+  params: Promise<{ slugs: string[] }>;
 }) {
   const { slugs } = await params;
   if (slugs?.length === 2) {
