@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "./styles.css";
+import { useState } from "react";
 
 const navLink = [
   {
@@ -25,8 +26,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const [check, setCheck] = useState("");
   return (
     <div>
+      <input
+        type="text"
+        value={check}
+        onChange={(e) => setCheck(e.target.value)}
+      />
       {navLink.map((links) => {
         const isActive =
           pathname === links.href ||
