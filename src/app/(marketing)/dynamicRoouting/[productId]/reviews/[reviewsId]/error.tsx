@@ -1,4 +1,6 @@
 "use client";
+import { useRouter } from "next/navigation";
+import { startTransition } from "react";
 
 export default function Error({
   error,
@@ -7,10 +9,17 @@ export default function Error({
   error: Error;
   reset: () => void;
 }) {
+  const router = useRouter();
+  const reload = () => {
+    startTransition(() => {
+      router.refresh();
+      reset();
+    });
+  };
   return (
     <div>
       <p>{error.message}</p>
-      <button onClick={() => reset()}>try again</button>
+      <button onClick={() => reload()}>try again</button>
     </div>
   );
 }
